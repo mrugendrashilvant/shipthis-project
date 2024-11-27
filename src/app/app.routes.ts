@@ -10,5 +10,9 @@ export const routes: Routes = [
   {
     path: ClientRoutes.auth.login(),
     loadComponent: () => import('@feature/auth/auth.component').then(c => c.AuthComponent)
+  },
+  {
+    path: ClientRoutes.auth.register(),
+    loadComponent: () => import('@feature/auth/register/register.component').then(c => c.RegisterComponent)
   }
 ];
