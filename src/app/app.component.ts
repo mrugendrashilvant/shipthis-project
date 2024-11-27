@@ -10,4 +10,8 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'shipthis-project';
+
+  changeTheme() {
+    document.body.setAttribute('data-theme', "light");
+  }
 }
