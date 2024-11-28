@@ -1,4 +1,16 @@
+.label-text {
+  color: white;
+}
 .image-background {
+  &::before {
+    content: "";
+    height: 100svh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100svw;
+    background: linear-gradient(90deg, rgba(0,0,0,1) 10%, rgba(9,9,121,0) 57%, rgba(0,212,255,0) 100%);
+  }
   background-image: url('assets/images/poster.jpg');
   background-size: cover;
   background-position: center;

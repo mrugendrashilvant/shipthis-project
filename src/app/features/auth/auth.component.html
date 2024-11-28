@@ -1,17 +1,17 @@
-<div class="relative image-background min-h-screen flex items-center justify-center">
-  <p class="absolute top-0 right-0 p-4 text-3xl text-white font-extrabold">FletNix</p>
-  <div class="card glass w-full max-w-sm shrink-0 shadow-2xl">
+<div class="relative image-background min-h-screen flex items-center justify-center lg:justify-start">
+  <p class="absolute top-0 left-0 p-4 text-3xl text-white font-extrabold">FletNix</p>
+
+  <div class="card glass md:ml-8 w-full max-w-sm shrink-0 shadow-2xl">
     <form [formGroup]="loginForm" class="card-body">
       <div class="form-control">
         <label class="label">
           <span class="label-text">Email</span>
         </label>
-        <input formControlName="email" type="email" placeholder="Email" class="input input-bordered" required />
+        <input formControlName="email" type="email" placeholder="Email" class="input input-bordered" required/>
         <ng-container *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid">
-          @if(loginForm.get('email')?.errors?.['required']) {
+          @if (loginForm.get('email')?.errors?.['required']) {
             <small class="text-error">Email is required</small>
-          }
-          @else {
+          } @else {
             <small class="text-error">Invalid email address</small>
           }
         </ng-container>
@@ -20,17 +20,18 @@
         <label class="label">
           <span class="label-text">Password</span>
         </label>
-        <input formControlName="password" type="password" placeholder="Password" class="input input-bordered" required />
+        <input formControlName="password" type="password" placeholder="Password" class="input input-bordered" required/>
         <ng-container *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
           <small class="text-error">Password is required</small>
         </ng-container>
-<!--        <label class="label">-->
-<!--          <a href="#" class="label-text-alt link link-hover">Forgot password?</a>-->
-<!--        </label>-->
+        <!--        <label class="label">-->
+        <!--          <a href="#" class="label-text-alt link link-hover">Forgot password?</a>-->
+        <!--        </label>-->
       </div>
       <div class="form-control mt-6">
         <button class="btn btn-primary">Login</button>
       </div>
     </form>
   </div>
+
 </div>
