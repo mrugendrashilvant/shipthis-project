@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {Router} from "@angular/router";
-import {from, Observable} from "rxjs";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Injectable({
@@ -15,14 +14,12 @@ export class AuthService {
     private snackBar: MatSnackBar
   ) { }
 
-  loginUser(email:string, password:string): Observable<any> {
-    let promise = this.fireAuth.signInWithEmailAndPassword(email, password);
-    return from(promise);
+  loginUser(email:string, password:string) {
+    return (this.fireAuth.signInWithEmailAndPassword(email, password));
   }
 
-  registerUser(email: string, password:string): Observable<any> {
-    let promise = this.fireAuth.createUserWithEmailAndPassword(email, password);
-    return from(promise);
+  registerUser(email: string, password:string) {
+    return this.fireAuth.createUserWithEmailAndPassword(email, password);
   }
 
   logout() {

@@ -2,7 +2,7 @@
   <p class="absolute top-0 left-0 p-4 text-3xl text-white font-extrabold">FletNix</p>
 
   <div class="card glass md:ml-8 w-full max-w-sm shrink-0 shadow-2xl">
-    <form [formGroup]="loginForm" class="card-body">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="card-body">
       <div class="form-control">
         <label class="label">
           <span class="label-text">Email</span>

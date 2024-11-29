@@ -9,6 +9,7 @@ import {getFirestore, provideFirestore} from '@angular/fire/firestore';
 import {environment} from "../environment/environment";
 import {FIREBASE_OPTIONS} from "@angular/fire/compat";
 import {MAT_SNACK_BAR_DEFAULT_OPTIONS} from "@angular/material/snack-bar";
+import {provideAnimationsAsync} from "@angular/platform-browser/animations/async";
 
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({eventCoalescing: true}),
@@ -16,7 +17,8 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes), provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
+    provideAnimationsAsync(),
     { provide: FIREBASE_OPTIONS, useValue: environment.firebaseConfig},
-    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2000, horizontalPosition: "center", verticalPosition: "top"}}
+    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 3000, horizontalPosition: "center", verticalPosition: "top"}}
   ]
 };
