@@ -35,12 +35,9 @@
         <ng-container *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid">
           <small class="text-error">Password is required</small>
         </ng-container>
-        <!--        <label class="label">-->
-        <!--          <a href="#" class="label-text-alt link link-hover">Forgot password?</a>-->
-        <!--        </label>-->
       </div>
       <div class="form-control mt-6">
-        <button class="btn btn-primary">Register
+        <button [disabled]="loading" class="btn btn-primary">Register
           @if(loading) {
             <span class="loading loading-spinner loading-md"></span>
           }

@@ -37,7 +37,7 @@ export class AuthComponent {
           this.snackBar.open("Welcome to FletNix!", undefined, {panelClass: "success-snackbar"});
           this.router.navigate([`/${ClientRoutes.dashboard.base()}`])
         },
-        err => {
+        (err) => {
           this.loading = false;
           this.router.navigate([`/${ClientRoutes.auth.register()}`])
           this.snackBar.open("Account not found. Please register first", undefined, {panelClass: "error-snackbar"});

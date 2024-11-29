@@ -41,9 +41,15 @@ export class RegisterComponent {
           this.snackBar.open("Welcome to FletNix!", undefined, {panelClass: "success-snackbar"});
           this.router.navigate([`/${ClientRoutes.dashboard.base()}`])
         },
-        err => {
+        (err) => {
           this.loading = false;
-          this.snackBar.open(err.error.message, undefined, {panelClass: "error-snackbar"});
+          if(err?.message?.includes("auth/email-already-in-use")) {
+            this.router.navigate([`/${ClientRoutes.auth.login()}`]);
+            this.snackBar.open("Account exits already. Please login", undefined, {panelClass: "error-snackbar"});
+          }
+          else {
+            this.snackBar.open(err, undefined, {panelClass: "error-snackbar"});
+          }
         }
       )
   }
