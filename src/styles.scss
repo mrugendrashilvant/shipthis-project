@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.success-snackbar {
+  --mdc-snackbar-container-color: #44a13e;
+  --mdc-snackbar-supporting-text-color: white;
+  --mat-mdc-snack-bar-button-color: white;
+  white-space: pre-wrap;
+  .mat-simple-snackbar-action {
+    color: white !important;
+  }
+}
+.error-snackbar {
+  --mdc-snackbar-container-color: #ec6f6f;
+  --mdc-snackbar-supporting-text-color: white;
+  --mat-mdc-snack-bar-button-color: white;
+  white-space: pre-wrap;
+  .mat-simple-snackbar-action {
+    color: white !important;
+  }
+}
