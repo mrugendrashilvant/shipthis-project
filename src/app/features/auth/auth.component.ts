@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {CommonModule} from "@angular/common";
 import {AuthService} from "../../service/auth.service";
@@ -18,6 +18,7 @@ export class AuthComponent {
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required])
   });
+  loading: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -28,14 +29,16 @@ export class AuthComponent {
 
   onSubmit() {
     this.loginForm.markAllAsTouched();
-    if(this.loginForm.invalid) return;
+    if (this.loginForm.invalid) return;
+    this.loading = true;
     let formData = this.loginForm.getRawValue();
     this.authService.loginUser(formData?.email, formData?.password)
       .then(() => {
-        this.snackBar.open("Welcome to FletNix!", undefined, {panelClass: "success-snackbar"});
-        this.router.navigate([`/${ClientRoutes.dashboard.base()}`])
-      },
+          this.snackBar.open("Welcome to FletNix!", undefined, {panelClass: "success-snackbar"});
+          this.router.navigate([`/${ClientRoutes.dashboard.base()}`])
+        },
         err => {
+          this.loading = false;
           this.router.navigate([`/${ClientRoutes.auth.register()}`])
           this.snackBar.open("Account not found. Please register first", undefined, {panelClass: "error-snackbar"});
         }
