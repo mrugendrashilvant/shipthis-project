@@ -33,6 +33,7 @@ export class AuthComponent {
     this.authService.loginUser(formData?.email, formData?.password)
       .then(() => {
         this.snackBar.open("Welcome to FletNix!", undefined, {panelClass: "success-snackbar"});
+        this.router.navigate([`/${ClientRoutes.dashboard.base()}`])
       },
         err => {
           this.router.navigate([`/${ClientRoutes.auth.register()}`])
