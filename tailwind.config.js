@@ -28,7 +28,7 @@ module.exports = {
         "primary": "#027fac",
         "primary-content": "#ffffff",
       }
-    }],
+    }, "dark"],
   },
 }
 
