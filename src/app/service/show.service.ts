@@ -16,11 +16,11 @@ export class ShowService {
     return this.http.get<MovieResponse[]>(location.origin + '/assets/data/movies.json')
   }
 
-  getData(limit: number=15, offset: number = 0, search?:string):Observable<ApiResponse> {
+  getData(limit: number=15, pageIndex: number = 0, search?:string):Observable<ApiResponse> {
     let data$ = new BehaviorSubject<ApiResponse>({total_count: 0, data: []});
     this.fetchData().subscribe({
       next: (res) => {
-        data$.next({total_count:res.length, data:res.slice(offset,offset + limit)});
+        data$.next({total_count:res.length, data:res.slice(pageIndex*limit,(pageIndex*limit + limit))});
       },
       error: (err) => {
         return data$.next({total_count: 0, data: []});

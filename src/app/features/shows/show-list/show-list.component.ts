@@ -23,7 +23,7 @@ export interface ColumnDef {
 })
 export class ShowListComponent implements AfterViewInit {
   displayedColumns: string[] = [
-    'type',
+    'type', 'show_id',
     'title', 'director',
     'date_added', 'release_year',
     'rating', 'duration', 'action'
