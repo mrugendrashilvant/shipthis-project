@@ -27,8 +27,8 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
     </div>
-    <div class="table-footer">
-      <mat-paginator [length]="resultsLength" [pageSize]="15" aria-label="Select page for movies"></mat-paginator>
+    <div class="table-footer rounded-b-lg">
+      <mat-paginator class="rounded-b-lg" [length]="resultsLength" [pageSize]="15" aria-label="Select page for movies"></mat-paginator>
     </div>
   </div>
 </div>
