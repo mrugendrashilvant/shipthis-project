@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {BehaviorSubject, Observable} from "rxjs";
+import {ApiResponse, MovieResponse} from "@core/response.interface";
 
 @Injectable({
   providedIn: 'root'
@@ -12,17 +13,17 @@ export class ShowService {
   ) { }
 
   fetchData() {
-    return this.http.get<any[]>(location.origin + '/assets/data/movies.json')
+    return this.http.get<MovieResponse[]>(location.origin + '/assets/data/movies.json')
   }
 
-  getData(limit: number=15, offset: number = 0):Observable<any[]> {
-    let data$ = new BehaviorSubject<any[]>([]);
+  getData(limit: number=15, offset: number = 0, search?:string):Observable<ApiResponse> {
+    let data$ = new BehaviorSubject<ApiResponse>({total_count: 0, data: []});
     this.fetchData().subscribe({
       next: (res) => {
-        data$.next(res.slice(offset,offset + limit));
+        data$.next({total_count:res.length, data:res.slice(offset,offset + limit)});
       },
       error: (err) => {
-        return data$.next([]);
+        return data$.next({total_count: 0, data: []});
       }
     });
 

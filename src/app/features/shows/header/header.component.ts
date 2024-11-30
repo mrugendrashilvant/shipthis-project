@@ -17,9 +17,11 @@ export class HeaderComponent implements OnInit{
   onChange(ev:any) {
     if(ev?.target?.checked) {
       document.body.setAttribute('data-theme', "dark");
+      document.getElementsByTagName("table")[0].classList.add("darkMode");
     }
     else {
       document.body.setAttribute('data-theme', "light");
+      document.getElementsByTagName("table")[0].classList.remove("darkMode");
     }
   }
 
