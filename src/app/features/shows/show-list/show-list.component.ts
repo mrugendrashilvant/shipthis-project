@@ -7,6 +7,7 @@ import {CommonModule, DatePipe} from "@angular/common";
 import {ApiResponse, MovieResponse} from "@core/response.interface";
 import {catchError, map, of, startWith, switchMap} from "rxjs";
 import {ShowService} from "../../../service/show.service";
+import {Snake2SentencePipe} from "@core/pipes/snake2-sentence.pipe";
 
 export interface ColumnDef {
   property: string,
@@ -16,7 +17,7 @@ export interface ColumnDef {
 @Component({
   selector: 'app-show-list',
   standalone: true,
-  imports: [MatProgressSpinnerModule, MatTableModule, MatSortModule, MatPaginatorModule, DatePipe, CommonModule],
+  imports: [MatProgressSpinnerModule, MatTableModule, MatSortModule, MatPaginatorModule, DatePipe, CommonModule, Snake2SentencePipe],
   templateUrl: './show-list.component.html',
   styleUrl: './show-list.component.scss'
 })
