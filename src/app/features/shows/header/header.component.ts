@@ -4,6 +4,7 @@ import {FormsModule} from "@angular/forms";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatIconModule} from "@angular/material/icon";
 import {AuthService} from "../../../service/auth.service";
+import {CommonService} from "../../../service/common.service";
 
 @Component({
   selector: 'app-header',
@@ -14,19 +15,27 @@ import {AuthService} from "../../../service/auth.service";
 })
 export class HeaderComponent implements OnInit{
   authService = inject(AuthService);
-
+  commonService = inject(CommonService);
   ngOnInit() {
-    this.onChange(false)
+    this.onChange(false);
+    this.commonService.getCurrentViewMode().subscribe((mode) => {
+      if(mode === 'light') {
+        document.body.setAttribute('data-theme', "light");
+        document.getElementsByTagName("table")[0].classList.remove("darkMode");
+      }
+      else {
+        document.body.setAttribute('data-theme', "dark");
+        document.getElementsByTagName("table")[0].classList.add("darkMode");
+      }
+    })
   }
 
   onChange(ev:any) {
     if(ev?.target?.checked) {
-      document.body.setAttribute('data-theme', "dark");
-      document.getElementsByTagName("table")[0].classList.add("darkMode");
+      this.commonService.setViewMode('dark');
     }
     else {
-      document.body.setAttribute('data-theme', "light");
-      document.getElementsByTagName("table")[0].classList.remove("darkMode");
+      this.commonService.setViewMode('light');
     }
   }
 
