@@ -43,4 +43,14 @@ export class ShowService {
 
     return data$.asObservable();
   }
+
+  getDataById(id: string): Observable<MovieResponse> {
+    let movie = new BehaviorSubject<MovieResponse>({} as MovieResponse);
+    this.fetchData().subscribe({
+      next: (res) => {
+        movie.next(res.find((single)=>single.show_id===id) as MovieResponse)
+      }
+    });
+    return movie;
+  }
 }

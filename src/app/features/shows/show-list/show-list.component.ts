@@ -10,6 +10,8 @@ import {ShowService} from "../../../service/show.service";
 import {Snake2SentencePipe} from "@core/pipes/snake2-sentence.pipe";
 import {MatIconModule} from "@angular/material/icon";
 import {MatTooltipModule} from "@angular/material/tooltip";
+import {MatDialog} from "@angular/material/dialog";
+import {ViewShowComponent} from "@feature/shows/view-show/view-show.component";
 
 export interface ColumnDef {
   property: string,
@@ -54,6 +56,7 @@ export class ShowListComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   showService = inject(ShowService);
+  matDialog = inject(MatDialog);
 
   ngAfterViewInit() {
     this.getData();
@@ -77,5 +80,18 @@ export class ShowListComponent implements AfterViewInit {
       })
     )
       .subscribe(data => (this.data = data));
+  }
+
+  viewDetails(data:MovieResponse) {
+    this.matDialog.open(ViewShowComponent, {
+      panelClass: 'side-panel',
+      hasBackdrop: true,
+      height: "100svh",
+      position: {
+        right: "0",
+        top: "0",
+      },
+      data: data
+    })
   }
 }

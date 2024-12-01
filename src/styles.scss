@@ -37,3 +37,27 @@ $dark-theme: mat.define-dark-theme((
     color: white !important;
   }
 }
+.side-panel {
+  position: relative !important;
+  animation: slideIn 300ms ease-in;
+  width: 50%;
+  max-width: 1000px !important;
+  .mat-mdc-dialog-surface{
+    border-radius: 12px 0 0 12px !important;
+  }
+}
+@media (max-width:600px) {
+  .side-panel {
+    width: 90%;
+    max-width: 1000px !important;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    left: 100%;
+  }
+  to {
+    left: 0;
+  }
+}
