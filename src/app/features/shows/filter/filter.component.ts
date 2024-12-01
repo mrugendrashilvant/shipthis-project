@@ -16,11 +16,12 @@ export class FilterComponent {
     this.searchTag.nativeElement.focus();
   }
   @Output('updatedFilter')updateFilter = new EventEmitter<string[]>();
+  @Output('searchTerm') searchTerm = new EventEmitter<string>();
   @ViewChild('searchTag') searchTag!: ElementRef<HTMLInputElement>;
 
   filterItems: string[] = [];
 
-  editFilter(type: 'Movie' | 'TV') {
+  editFilter(type: 'Movie' | 'TV Show') {
     let idx = this.filterItems.indexOf(type);
     if(idx > -1) {
       this.filterItems.splice(idx, 1);

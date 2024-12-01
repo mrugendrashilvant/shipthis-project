@@ -24,7 +24,14 @@ export interface ColumnDef {
   styleUrl: './show-list.component.scss'
 })
 export class ShowListComponent implements AfterViewInit {
-  @Input('filter') filter: string[]=[];
+  _filter!:string[];
+  @Input('filter') set filter(data:string[]) {
+    this._filter = data;
+    setTimeout(()=>{this.getData()},200)
+  }
+  get filter(): string[] {
+    return this._filter;
+  }
   displayedColumns: string[] = [
     'type',
     'title', 'director',
@@ -34,17 +41,20 @@ export class ShowListComponent implements AfterViewInit {
   data: MovieResponse[] = [];
   isLoadingResults = true;
   resultsLength: number = 0;
-  columnDefs!: ColumnDef[];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   showService = inject(ShowService);
 
   ngAfterViewInit() {
-    this.paginator.page.pipe(
+    this.getData();
+  }
+
+  getData() {
+    this.paginator?.page.pipe(
       startWith({}),
       switchMap(() => {
         this.isLoadingResults = true;
-        return this.showService.getData(15, this.paginator.pageIndex)
+        return this.showService.getData(15, this.paginator.pageIndex, "", this.filter)
           .pipe(catchError(() => of(null)))
       }),
       map(result => {

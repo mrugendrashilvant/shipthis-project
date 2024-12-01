@@ -1,5 +1,5 @@
 <app-header></app-header>
 <div class="p-2">
-  <app-filter (updatedFilter)="filter = $event"></app-filter>
+  <app-filter (updatedFilter)="setFilterItems($event)"></app-filter>
   <app-show-list [filter]="filter"></app-show-list>
 </div>
