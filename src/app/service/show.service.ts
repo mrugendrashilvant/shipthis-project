@@ -29,7 +29,7 @@ export class ShowService {
           response.total_count = response.data.length;
         }
         if(searchTerm && searchTerm.length > 0){
-          let searchedData = response.data.filter(v => v.title == null || String(v.title).startsWith( searchTerm ));
+          let searchedData = response.data.filter(v => v.title == null || String(v.title.toLowerCase()).startsWith( searchTerm.toLowerCase() ));
           response.data = searchedData;
           response.total_count = searchedData.length;
         }
