@@ -1,10 +1,10 @@
-import {AfterViewInit, Component, inject, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, inject, Input, ViewChild} from '@angular/core';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatTableModule} from "@angular/material/table";
 import {MatSortModule} from "@angular/material/sort";
 import {MatPaginator, MatPaginatorModule} from "@angular/material/paginator";
 import {CommonModule, DatePipe} from "@angular/common";
-import {ApiResponse, MovieResponse} from "@core/response.interface";
+import {MovieResponse} from "@core/response.interface";
 import {catchError, map, of, startWith, switchMap} from "rxjs";
 import {ShowService} from "../../../service/show.service";
 import {Snake2SentencePipe} from "@core/pipes/snake2-sentence.pipe";
@@ -24,6 +24,7 @@ export interface ColumnDef {
   styleUrl: './show-list.component.scss'
 })
 export class ShowListComponent implements AfterViewInit {
+  @Input('filter') filter: string[]=[];
   displayedColumns: string[] = [
     'type',
     'title', 'director',

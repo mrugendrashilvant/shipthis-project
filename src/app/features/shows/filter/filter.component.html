@@ -1,0 +1,26 @@
+<div class="flex items-center flex-wrap justify-center gap-4 mb-3">
+  <div>
+    <label class="input w-[300px] input-bordered flex items-center gap-2">
+      <input #searchTag type="text" class="grow" placeholder="Search" />
+      <kbd class="kbd kbd-sm">Q</kbd>
+    </label>
+  </div>
+  <div class="flex gap-3 flex-wrap items-center">
+    <button (click)="editFilter('Movie')"
+            [ngClass]="{'btn-outline':!filterItems.includes('Movie')}"
+            class="btn btn-sm btn-primary rounded-full">
+      Movie
+      @if(filterItems.includes('Movie')) {
+        <mat-icon>highlight_remove</mat-icon>
+      }
+    </button>
+    <button (click)="editFilter('TV')"
+            [ngClass]="{'btn-outline':!filterItems.includes('TV')}"
+            class="btn btn-sm btn-primary rounded-full">
+      TV Show
+      @if(filterItems.includes('TV')) {
+        <mat-icon>highlight_remove</mat-icon>
+      }
+    </button>
+  </div>
+</div>

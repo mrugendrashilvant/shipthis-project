@@ -1,34 +1,22 @@
-import {Component, OnInit} from '@angular/core';
-import {ShowService} from "../../service/show.service";
+import {Component} from '@angular/core';
 import {ClientRoutes} from "@core/client-routes";
 import {HeaderComponent} from "@feature/shows/header/header.component";
 import {ShowListComponent} from "@feature/shows/show-list/show-list.component";
+import {FilterComponent} from "@feature/shows/filter/filter.component";
 
 @Component({
   selector: 'app-shows',
   standalone: true,
   imports: [
     HeaderComponent,
-    ShowListComponent
+    ShowListComponent,
+    FilterComponent
   ],
   templateUrl: './shows.component.html',
   styleUrl: './shows.component.scss'
 })
-export class ShowsComponent implements OnInit{
-  constructor(
-    private showService: ShowService,
-  ) {
-  }
-
-  ngOnInit() {
-
-  }
-
-  getData() {
-    this.showService.getData(15,2).subscribe((res) => {
-      console.log(res);
-    })
-  }
+export class ShowsComponent {
+  filter:string[]=[];
 
   protected readonly ClientRoutes = ClientRoutes;
 }

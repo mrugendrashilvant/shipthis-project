@@ -1,2 +1,5 @@
 <app-header></app-header>
-<app-show-list></app-show-list>
+<div class="p-2">
+  <app-filter (updatedFilter)="filter = $event"></app-filter>
+  <app-show-list [filter]="filter"></app-show-list>
+</div>
