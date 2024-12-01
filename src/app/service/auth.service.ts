@@ -26,9 +26,23 @@ export class AuthService {
     this.fireAuth.signOut().then(() => {
       this.snackBar.open("Logged out successfully!", undefined, {panelClass: "success-snackbar"})
       this.router.navigate(['/']);
+      this.clearUserInfo();
     })
       .catch(() => {
         this.router.navigate(['/']);
+        this.clearUserInfo();
       })
+  }
+
+  saveUserInfo(isLoggedIn: boolean) {
+    localStorage.setItem("loggedIn", JSON.stringify(isLoggedIn));
+  }
+
+  isUserLoggedIn(): boolean {
+    return Boolean(localStorage.getItem("loggedIn"));
+  }
+
+  clearUserInfo() {
+    localStorage.clear();
   }
 }

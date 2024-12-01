@@ -39,7 +39,8 @@ export class RegisterComponent {
     this.authService.registerUser(formData?.email, formData?.password)
       .then(() => {
           this.snackBar.open("Welcome to FletNix!", undefined, {panelClass: "success-snackbar"});
-          this.router.navigate([`/${ClientRoutes.dashboard.base()}`])
+          this.router.navigate([`/${ClientRoutes.dashboard.base()}`]);
+          this.authService.saveUserInfo(true)
         },
         (err) => {
           this.loading = false;
@@ -50,6 +51,7 @@ export class RegisterComponent {
           else {
             this.snackBar.open(err, undefined, {panelClass: "error-snackbar"});
           }
+          this.authService.saveUserInfo(false);
         }
       )
   }

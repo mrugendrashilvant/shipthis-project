@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import {ClientRoutes} from "@core/client-routes";
+import {authGuard} from "./auth.guard";
 
 export const routes: Routes = [
   {
@@ -17,6 +18,7 @@ export const routes: Routes = [
   },
   {
     path: ClientRoutes.dashboard.base(),
-    loadComponent: () => import('@feature/shows/shows.component').then(c => c.ShowsComponent)
+    loadComponent: () => import('@feature/shows/shows.component').then(c => c.ShowsComponent),
+    canActivate: [authGuard],
   }
 ];
