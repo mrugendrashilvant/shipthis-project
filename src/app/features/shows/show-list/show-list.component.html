@@ -18,7 +18,17 @@
               </td>
             } @else {
               <th mat-header-cell *matHeaderCellDef>{{ single | snake2Sentence }}</th>
-              <td mat-cell *matCellDef="let row">{{ row?.[single]??"-" }}</td>
+              @if (single === 'type') {
+                <td class="cursor-pointer" mat-cell *matCellDef="let row">
+                  @if (row?.[single] === 'Movie') {
+                    <mat-icon class="text-teal-700" matTooltip="Movie">movie</mat-icon>
+                  } @else {
+                    <mat-icon class="text-yellow-600" matTooltip="TV Show">live_tv</mat-icon>
+                  }
+                </td>
+              } @else {
+                <td mat-cell *matCellDef="let row">{{ row?.[single] ?? "-" }}</td>
+              }
             }
           </ng-container>
         </ng-container>
@@ -28,7 +38,8 @@
       </table>
     </div>
     <div class="table-footer rounded-b-lg">
-      <mat-paginator class="rounded-b-lg" [length]="resultsLength" [pageSize]="15" aria-label="Select page for movies"></mat-paginator>
+      <mat-paginator class="rounded-b-lg" [length]="resultsLength" [pageSize]="15"
+                     aria-label="Select page for movies"></mat-paginator>
     </div>
   </div>
 </div>

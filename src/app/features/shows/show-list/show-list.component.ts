@@ -8,6 +8,8 @@ import {ApiResponse, MovieResponse} from "@core/response.interface";
 import {catchError, map, of, startWith, switchMap} from "rxjs";
 import {ShowService} from "../../../service/show.service";
 import {Snake2SentencePipe} from "@core/pipes/snake2-sentence.pipe";
+import {MatIconModule} from "@angular/material/icon";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 export interface ColumnDef {
   property: string,
@@ -17,13 +19,13 @@ export interface ColumnDef {
 @Component({
   selector: 'app-show-list',
   standalone: true,
-  imports: [MatProgressSpinnerModule, MatTableModule, MatSortModule, MatPaginatorModule, DatePipe, CommonModule, Snake2SentencePipe],
+  imports: [MatProgressSpinnerModule, MatTableModule, MatSortModule, MatPaginatorModule, DatePipe, CommonModule, Snake2SentencePipe, MatIconModule, MatTooltipModule],
   templateUrl: './show-list.component.html',
   styleUrl: './show-list.component.scss'
 })
 export class ShowListComponent implements AfterViewInit {
   displayedColumns: string[] = [
-    'type', 'show_id',
+    'type',
     'title', 'director',
     'date_added', 'release_year',
     'rating', 'duration', 'action'
