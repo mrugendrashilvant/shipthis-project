@@ -19,9 +19,14 @@ import {JsonPipe} from "@angular/common";
 })
 export class ShowsComponent {
   filter:string[]=[];
+  searchTermValue!: string;
 
   setFilterItems(items: string[]) {
     this.filter = [...items];
+  }
+
+  setSearchTerm(searchTerm: string) {
+    this.searchTermValue = searchTerm;
   }
 
   protected readonly ClientRoutes = ClientRoutes;

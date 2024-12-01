@@ -25,6 +25,7 @@ export interface ColumnDef {
 })
 export class ShowListComponent implements AfterViewInit {
   _filter!:string[];
+  _searchTerm!: string;
   @Input('filter') set filter(data:string[]) {
     this._filter = data;
     setTimeout(()=>{this.getData()},200)
@@ -32,6 +33,15 @@ export class ShowListComponent implements AfterViewInit {
   get filter(): string[] {
     return this._filter;
   }
+
+  @Input('searchTerm') set searchTerm(searchTerm:string) {
+    this._searchTerm = searchTerm;
+    setTimeout(()=>{this.getData()},200)
+  }
+  get searchTerm() {
+    return this._searchTerm;
+  }
+
   displayedColumns: string[] = [
     'type',
     'title', 'director',
@@ -54,7 +64,7 @@ export class ShowListComponent implements AfterViewInit {
       startWith({}),
       switchMap(() => {
         this.isLoadingResults = true;
-        return this.showService.getData(15, this.paginator.pageIndex, "", this.filter)
+        return this.showService.getData(15, this.paginator.pageIndex, this.searchTerm, this.filter)
           .pipe(catchError(() => of(null)))
       }),
       map(result => {
