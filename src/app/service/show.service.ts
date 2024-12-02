@@ -29,7 +29,7 @@ export class ShowService {
           response.total_count = response.data.length;
         }
         if(searchTerm && searchTerm.length > 0){
-          let searchedData = response.data.filter(v => v.title == null || String(v.title.toLowerCase()).startsWith( searchTerm.toLowerCase() ));
+          let searchedData = response.data.filter(v => v.title == null || this.check(v.title, searchTerm));
           response.data = searchedData;
           response.total_count = searchedData.length;
         }
@@ -42,6 +42,13 @@ export class ShowService {
     });
 
     return data$.asObservable();
+  }
+
+  check(title: string, search: string) {
+    if(typeof title === 'string') {
+      return title.toLowerCase().startsWith(search.toLowerCase());
+    }
+    return false;
   }
 
   getDataById(id: string): Observable<MovieResponse> {
